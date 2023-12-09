@@ -28,6 +28,21 @@ class MainActivity : AppCompatActivity() {
         buttonCalculate.setOnClickListener {
             calculateResult()
         }
+        private fun calculateResult() {
+            val num1 = editTextNumber1.text.toString().toDouble()
+            val num2 = editTextNumber2.text.toString().toDouble()
 
+            val operatorId = radioGroupOperators.checkedRadioButtonId
+            val operator = when (operatorId) {
+                R.id.radioButtonAdd -> "+"
+                R.id.radioButtonSubtract -> "-"
+                R.id.radioButtonMultiply -> "*"
+                R.id.radioButtonDivide -> "/"
+                else -> return
+            }
+
+            val result = performOperation(num1, num2, operator)
+            textViewResult.text = "Result: $result"
+        }
     }
 }
