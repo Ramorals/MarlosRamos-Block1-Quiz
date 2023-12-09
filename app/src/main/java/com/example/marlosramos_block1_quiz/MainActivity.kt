@@ -6,6 +6,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.marlosramos_block1_quiz.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,10 +26,7 @@ class MainActivity : AppCompatActivity() {
         buttonCalculate = findViewById(R.id.buttonCalculate)
         textViewResult = findViewById(R.id.textViewResult)
 
-        buttonCalculate.setOnClickListener {
-            calculateResult()
-        }
-        private fun calculateResult() {
+        fun calculateResult() {
             val num1 = editTextNumber1.text.toString().toDouble()
             val num2 = editTextNumber2.text.toString().toDouble()
 
@@ -39,6 +37,19 @@ class MainActivity : AppCompatActivity() {
                 R.id.radioButtonMultiply -> "*"
                 R.id.radioButtonDivide -> "/"
                 else -> return
+            }
+            buttonCalculate.setOnClickListener {
+                calculateResult()
+            }
+        }
+
+        fun performOperation(num1: Double, num2: Double, operator: String): Double {
+            return when (operator) {
+                "+" -> num1 + num2
+                "-" -> num1 - num2
+                "*" -> num1 * num2
+                "/" -> num1 / num2
+                else -> throw IllegalArgumentException("Invalid operator")
             }
 
             val result = performOperation(num1, num2, operator)
